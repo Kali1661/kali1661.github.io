@@ -1,6 +1,6 @@
 /* Edit this file to personalize the words and links across the page. */
 window.PORTFOLIO = {
-  name: "Jakub",
+  name: "Any",
   githubUsername: "Kali1661",
   location: "Slovakia",
   availability: "Open to learning, building, and good ideas",
