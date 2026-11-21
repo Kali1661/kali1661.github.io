@@ -52,18 +52,22 @@ h1 { margin: 0 0 27px; line-height: 1; text-wrap: balance; }
   .aurora-two { right: -55%; bottom: -15%; }
 }
 .fheart {
+  position: absolute;
+  bottom: -60px;
   pointer-events: none;
   user-select: none;
   line-height: 1;
-  opacity: var(--op, 0.6);
-  text-shadow: 0 0 10px currentColor, 0 0 24px currentColor;
-  animation: fheart-rise var(--dur, 7s) ease-in forwards;
+  text-shadow: 0 0 10px currentColor, 0 0 26px currentColor;
+  animation-name: fheart-rise;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  animation-duration: 7s;
 }
 @keyframes fheart-rise {
-  0%   { transform: translateY(0)      translateX(0)              scale(1);    opacity: var(--op, 0.6); }
-  40%  { transform: translateY(-40vh)  translateX(calc(var(--dx) * .5)) scale(1.1); opacity: var(--op, 0.6); }
-  80%  { transform: translateY(-85vh)  translateX(var(--dx))      scale(0.85); opacity: calc(var(--op, 0.6) * 0.4); }
-  100% { transform: translateY(-115vh) translateX(var(--dx))      scale(0.7);  opacity: 0; }
+  0%   { transform: translateY(0)      scale(1);    opacity: 0; }
+  8%   { opacity: 0.8; }
+  88%  { opacity: 0.35; }
+  100% { transform: translateY(-118vh) scale(0.65); opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
