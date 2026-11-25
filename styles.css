@@ -72,9 +72,7 @@ main {
 .note-message {
   display: grid; place-items: center; height: 1.7em;
   font-size: calc(var(--size) * .082); line-height: 1; white-space: nowrap;
-  transition: opacity .5s ease;
 }
-.note-message.is-changing { opacity: 0; }
 /* The Mongolian line is the longest; keep it clear of the heart's edge. */
 .note-message:lang(mn) { font-size: calc(var(--size) * .079); height: 1.765em; }
 .note-name { font-size: calc(var(--size) * .12); line-height: 1.5; font-weight: 400; }
@@ -111,23 +109,6 @@ main {
 .modes button:hover { color: var(--ink); }
 .modes button[aria-pressed="true"] { background: color-mix(in oklab, var(--heart) 30%, transparent); color: var(--ink); }
 
-.phrases { position: fixed; inset: 0; overflow: hidden; pointer-events: none; }
-.phrase {
-  position: absolute; white-space: nowrap;
-  font-family: var(--hand); font-size: clamp(21px, 3vw, 30px); line-height: 1.8;
-  color: var(--ink); text-shadow: 0 0 16px var(--heart), 0 1px 6px #0008;
-  animation: rise 2.6s cubic-bezier(.2, .7, .3, 1) forwards;
-}
-@keyframes rise {
-  from { transform: translate(-50%, -30%) scale(.7); opacity: 0; }
-  14% { opacity: 1; }
-  60% { opacity: 1; }
-  to { transform: translate(-50%, -190px) scale(1); opacity: 0; }
-}
-@keyframes hold {
-  from, 85% { transform: translate(-50%, -120%); opacity: 1; }
-  to { transform: translate(-50%, -120%); opacity: 0; }
-}
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 @media (max-height: 560px) {
@@ -138,5 +119,4 @@ main {
 @media (prefers-reduced-motion: reduce) {
   :root { transition: none; }
   .swatch svg { transition: none; }
-  .phrase { animation: hold 2.6s linear forwards; }
 }

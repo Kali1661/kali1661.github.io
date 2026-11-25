@@ -2,7 +2,7 @@
 window.LOVE = {
   name: "Any",
 
-  // The line inside the heart takes turns through these, and each tap floats one up.
+  // Each tap on the heart shows the next one.
   // 247 is the Mongolian one in numbers: Би (2 letters) чамд (4) хайртай (7).
   phrases: [
     { lang: "en", text: "I love you" },

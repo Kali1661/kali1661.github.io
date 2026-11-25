@@ -15,7 +15,7 @@
 
   if (love.name) $("name").textContent = love.name;
 
-  // The line inside the heart takes turns through the phrases.
+  // Each tap moves the line inside the heart on to the next phrase.
   const message = $("message");
   let messageIndex = 0;
   function showMessage(i) {
@@ -24,15 +24,6 @@
     message.textContent = love.phrases[messageIndex].text;
   }
   showMessage(0);
-  if (!still && love.phrases.length > 1) {
-    setInterval(() => {
-      message.classList.add("is-changing");
-      setTimeout(() => {
-        showMessage(messageIndex + 1);
-        message.classList.remove("is-changing");
-      }, 520);
-    }, 4000);
-  }
 
   /* ---------- colors ---------- */
 
@@ -291,13 +282,12 @@
   window.addEventListener("pointercancel", release);
   root.addEventListener("pointerleave", () => { pointer.on = false; });
 
-  let phraseIndex = 0;
   heartButton.addEventListener("click", (e) => {
     const keyboard = e.detail === 0;
     if (mode === "paint" && !keyboard) return; // a brush stroke, not a tap
     const x = keyboard ? cx : e.clientX;
     const y = keyboard ? cy : e.clientY;
-    sayIt(x, y);
+    nextMessage();
     if (still) return;
     kick = 1;
     for (const p of particles) {
@@ -321,22 +311,15 @@
     if (bursts.length > 240) bursts = bursts.slice(-240);
   });
 
-  function sayIt(x, y) {
-    const list = love.phrases;
-    const phrase = list[phraseIndex % list.length];
-    phraseIndex += 1;
-    const el = document.createElement("span");
-    el.className = "phrase";
-    el.lang = phrase.lang;
-    el.textContent = phrase.text;
-    $("phrases").appendChild(el);
-    const half = el.offsetWidth / 2 + 14;
-    el.style.left = Math.min(width - half, Math.max(half, x)) + "px";
-    el.style.top = y + "px";
-    setTimeout(() => el.remove(), 2700);
-    const live = $("live");
-    live.lang = phrase.lang;
-    live.textContent = phrase.text;
+  function nextMessage() {
+    showMessage(messageIndex + 1);
+    $("live").lang = message.lang;
+    $("live").textContent = message.textContent;
+    if (still) return;
+    message.animate(
+      [{ opacity: 0, transform: "scale(.72)" }, { opacity: 1, transform: "scale(1.06)", offset: 0.6 }, { opacity: 1, transform: "none" }],
+      { duration: 420, easing: "ease-out" }
+    );
   }
 
   /* ---------- drawing ---------- */
