@@ -2,34 +2,55 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#070910">
-    <meta name="description" content="The personal website of Jakub.">
-    <title>Jakub</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="content.js" defer></script>
-    <script src="app.js" defer></script>
-    <script src="background.js" defer></script>
-    <script src="hearts.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#16060c">
+    <meta name="robots" content="noindex">
+    <title>I love you</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ff3d6e' d='M12 21.2C5.6 16.4 1.8 12.7 1.8 8.4 1.8 5.1 4.3 2.8 7.3 2.8c1.9 0 3.6 1 4.7 2.6 1.1-1.6 2.8-2.6 4.7-2.6 3 0 5.5 2.3 5.5 5.6 0 4.3-3.8 8-10.2 12.8z'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Playwrite+SK:wght@100..400&display=swap">
+    <link rel="stylesheet" href="styles.css?v=2">
+    <script src="content.js?v=2" defer></script>
+    <script src="heart.js?v=2" defer></script>
   </head>
   <body>
-    <canvas class="ambient-canvas" id="ambient" aria-hidden="true"></canvas>
-    <div class="aurora aurora-one" aria-hidden="true"></div>
-    <div class="aurora aurora-two" aria-hidden="true"></div>
-    <div class="grain" aria-hidden="true"></div>
+    <svg class="defs" aria-hidden="true">
+      <symbol id="heart-shape" viewBox="0 0 24 24">
+        <path d="M12 21.2C5.6 16.4 1.8 12.7 1.8 8.4 1.8 5.1 4.3 2.8 7.3 2.8c1.9 0 3.6 1 4.7 2.6 1.1-1.6 2.8-2.6 4.7-2.6 3 0 5.5 2.3 5.5 5.6 0 4.3-3.8 8-10.2 12.8z"/>
+      </symbol>
+      <linearGradient id="rainbow" x1="0" y1="0" x2="1" y2="0.5">
+        <stop offset="0.05" stop-color="#ff4d6d"/>
+        <stop offset="0.3" stop-color="#ffc24b"/>
+        <stop offset="0.52" stop-color="#3ee0a8"/>
+        <stop offset="0.75" stop-color="#4fb4ff"/>
+        <stop offset="0.95" stop-color="#a77bff"/>
+      </linearGradient>
+    </svg>
 
-    <a class="skip-link" href="#main">Skip to content</a>
-    <div class="site-shell">
-      <main id="main" class="hero">
-        <section class="profile-card" aria-label="Jakub's profile">
-          <h1><span class="greeting">I love you</span><span class="profile-name">Any</span><span class="period"> &lt;3</span></h1>
-          <nav class="profile-links" aria-label="Profile sections">
-            <span class="profile-link" role="link" aria-disabled="true"><span class="link-index">01</span>About<span class="link-mark" aria-hidden="true">↗</span></span>
-            <span class="profile-link" role="link" aria-disabled="true"><span class="link-index">02</span>Blog<span class="link-mark" aria-hidden="true">↗</span></span>
-            <span class="profile-link" role="link" aria-disabled="true"><span class="link-index">03</span>Contact<span class="link-mark" aria-hidden="true">↗</span></span>
-          </nav>
-        </section>
-      </main>
-    </div>
+    <div class="glow" aria-hidden="true"></div>
+    <canvas id="sky" aria-hidden="true"></canvas>
+
+    <main>
+      <div class="stage" id="stage">
+        <button class="heart-button" id="heart" type="button" aria-label="Tap the heart"></button>
+        <h1 class="note">
+          <span class="note-message" id="message" lang="en">I love you</span>
+          <span class="note-name" id="name">Any</span>
+        </h1>
+      </div>
+
+      <div class="controls">
+        <p class="hint" id="hint">Tap the heart, then give it a new color.</p>
+        <div class="swatches" id="swatches" role="group" aria-label="Heart color"></div>
+        <div class="modes" role="group" aria-label="How color is applied">
+          <button type="button" id="mode-fill" data-mode="fill" aria-pressed="true">Whole heart</button>
+          <button type="button" id="mode-paint" data-mode="paint" aria-pressed="false">Paint it</button>
+        </div>
+      </div>
+    </main>
+
+    <div class="phrases" id="phrases" aria-hidden="true"></div>
+    <p class="sr-only" id="live" role="status"></p>
   </body>
 </html>

@@ -1,21 +1,24 @@
-/* Edit this file to personalize the words and links across the page. */
-window.PORTFOLIO = {
+/* Change the words on the page here. */
+window.LOVE = {
   name: "Any",
-  githubUsername: "Kali1661",
-  location: "Slovakia",
-  availability: "Open to learning, building, and good ideas",
-  intro: "I’m Jakub — a developer in progress, sharing the things I build and the things I learn along the way.",
-  aboutLead: "I like turning questions into little experiments — and those experiments into things people can use.",
-  aboutBody: "This is my small corner of the internet: a place to collect projects, practice new skills, and share what I’m curious about. I’m still figuring things out, and that’s part of the fun.",
-  note: "Currently collecting ideas, trying tools, and learning one project at a time.",
-  // Verified public project shown if GitHub's API is temporarily unavailable.
-  fallbackProjects: [{
-    name: "Lightweight CNN based Meter Digit Recognition",
-    description: "A paper implementation for reading meter digits, with screen detection, digit segmentation, and a lightweight CNN.",
-    language: "Python",
-    topics: ["OpenCV", "Computer Vision"],
-    html_url: "https://github.com/Kali1661/Lightweight-CNN-based-Meter-Digit-Recognition",
-    fork: false,
-    archived: false
-  }]
+
+  // The line inside the heart takes turns through these, and each tap floats one up.
+  // 247 is the Mongolian one in numbers: Би (2 letters) чамд (4) хайртай (7).
+  phrases: [
+    { lang: "en", text: "I love you" },
+    { lang: "sk", text: "Ľúbim ťa" },
+    { lang: "mn", text: "Би чамд хайртай" },
+    { lang: "mn", text: "247" }
+  ],
+
+  // Hearts under the big one. The first is the starting color.
+  colors: [
+    { name: "Rose", hex: "#ff3d6e" },
+    { name: "Cherry", hex: "#e8152f" },
+    { name: "Peach", hex: "#ff8a5c" },
+    { name: "Honey", hex: "#ffc24b" },
+    { name: "Mint", hex: "#3ee0a8" },
+    { name: "Sky", hex: "#4fb4ff" },
+    { name: "Lilac", hex: "#a77bff" }
+  ]
 };
