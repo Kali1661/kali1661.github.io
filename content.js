@@ -10,7 +10,7 @@ window.LOVE = {
 
   // What the kitty says, in order. {name} and {from} are filled in.
   kitty: {
-    hello: "mew! I have a delivery",
+    hello: "meow! I have a delivery :3",
     heart: "{from} loves you.",
     yarn: "For longer than this whole ball of yarn.",
     fish: "Even more than I love fish.",
