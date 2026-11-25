@@ -3,53 +3,80 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#16060c">
+    <meta name="theme-color" content="#ffe08f">
     <meta name="robots" content="noindex">
-    <title>I love you</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ff3d6e' d='M12 21.2C5.6 16.4 1.8 12.7 1.8 8.4 1.8 5.1 4.3 2.8 7.3 2.8c1.9 0 3.6 1 4.7 2.6 1.1-1.6 2.8-2.6 4.7-2.6 3 0 5.5 2.3 5.5 5.6 0 4.3-3.8 8-10.2 12.8z'/%3E%3C/svg%3E">
+    <title>A delivery for you</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Playwrite+SK:wght@100..400&display=swap">
-    <link rel="stylesheet" href="styles.css?v=3">
-    <script src="content.js?v=3" defer></script>
-    <script src="heart.js?v=3" defer></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Playwrite+SK:wght@100..400&family=Ubuntu+Mono:wght@400;700&display=swap">
+    <link rel="stylesheet" href="day.css">
+    <style>
+      /* Layout: an empty yellow room. A small typed kitty walks in along the floor; what she says is handwritten above. */
+      :root {
+        --bg: #ffe08f; --ink: #43203f; --pink: #c9184f; --floor: color-mix(in oklab, var(--bg) 82%, #a0682a);
+        --mono: "Ubuntu Mono", ui-monospace, Menlo, Consolas, "Courier New", monospace;
+        --fs: clamp(24px, 6.6vw, 38px);
+      }
+      body { overflow: hidden; background: linear-gradient(var(--bg) 0 74%, var(--floor) 74%); }
+      .scene::before { /* typed wallpaper */
+        position: absolute; inset: 0 0 26%; content: "";
+        background: var(--floor);
+        --hearts: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='92' height='92' font-family='monospace' font-size='17' font-weight='700'%3E%3Ctext x='10' y='28'%3E%26lt;3%3C/text%3E%3Ctext x='56' y='74'%3E%26lt;3%3C/text%3E%3C/svg%3E");
+        -webkit-mask: var(--hearts); mask: var(--hearts);
+      }
+      .scene { min-height: 100vh; min-height: 100svh; user-select: none; -webkit-user-select: none; }
+      .line {
+        position: absolute; left: 0; right: 0; top: 13%; margin: 0; padding: 0 22px;
+        min-height: 3.4em; display: grid; place-items: center;
+        text-align: center; text-wrap: balance;
+        font-family: var(--hand); font-weight: 400; font-size: clamp(25px, 6.2vw, 54px); line-height: 1.65;
+        color: var(--pink);
+      }
+      pre { margin: 0; font-family: var(--mono); font-weight: 700; font-size: var(--fs); line-height: 1.04; white-space: pre; font-variant-ligatures: none; }
+      .kitty { position: absolute; left: 0; bottom: 25.6%; will-change: transform; }
+      .bubble { color: #43203f;
+        position: absolute; left: 50%; bottom: calc(100% + 12px); margin: 0; padding: 4px 12px;
+        transform: translateX(-50%); white-space: nowrap;
+        border: 2px solid var(--ink); border-radius: 14px; background: #fff6da;
+        font-family: var(--mono); font-size: 18px; line-height: 1.4;
+      }
+      .item {
+        position: absolute; left: calc(100% - .2em); bottom: .7em; padding: 10px;
+        border: 0; background: none; color: var(--pink); cursor: pointer; touch-action: manipulation;
+      }
+      .item pre { font-size: calc(var(--fs) * .78); }
+      .item.is-waiting pre { animation: offer 1s ease-in-out infinite alternate; }
+      .item.is-big { transition: transform .28s cubic-bezier(.3, 1.8, .5, 1); z-index: 3; }
+      @keyframes offer { from { transform: translateY(3px) rotate(-3deg); } to { transform: translateY(-7px) rotate(4deg); } }
+      .thread {
+        position: absolute; right: 0; bottom: calc(25.6% - .25em); width: 0; overflow: hidden; direction: rtl;
+        color: var(--pink); font-family: var(--mono); font-weight: 700; font-size: var(--fs); line-height: 1; white-space: nowrap;
+      }
+      .bit { position: absolute; left: 0; top: 0; color: var(--pink); font-family: var(--mono); font-weight: 700; pointer-events: none; will-change: transform; }
+      .bottom { position: absolute; left: 0; right: 0; bottom: max(22px, env(safe-area-inset-bottom, 0px)); display: grid; justify-items: center; gap: 12px; padding: 0 16px; }
+      .hint { font-family: var(--mono); font-size: 18px; }
+      .btn { font-family: var(--mono); font-size: 18px; }
+      @media (max-height: 560px) { .line { top: 4%; min-height: 0; } .kitty { bottom: 27%; } .bottom .hint { display: none; } }
+      @media (prefers-reduced-motion: reduce) { .item.is-waiting pre { animation: none; } .item.is-big { transition: none; } }
+    </style>
+    <script src="content.js" defer></script>
+    <script src="day.js" defer></script>
+    <script src="page.js" defer></script>
   </head>
   <body>
-    <svg class="defs" aria-hidden="true">
-      <symbol id="heart-shape" viewBox="0 0 24 24">
-        <path d="M12 21.2C5.6 16.4 1.8 12.7 1.8 8.4 1.8 5.1 4.3 2.8 7.3 2.8c1.9 0 3.6 1 4.7 2.6 1.1-1.6 2.8-2.6 4.7-2.6 3 0 5.5 2.3 5.5 5.6 0 4.3-3.8 8-10.2 12.8z"/>
-      </symbol>
-      <linearGradient id="rainbow" x1="0" y1="0" x2="1" y2="0.5">
-        <stop offset="0.05" stop-color="#ff4d6d"/>
-        <stop offset="0.3" stop-color="#ffc24b"/>
-        <stop offset="0.52" stop-color="#3ee0a8"/>
-        <stop offset="0.75" stop-color="#4fb4ff"/>
-        <stop offset="0.95" stop-color="#a77bff"/>
-      </linearGradient>
-    </svg>
-
-    <div class="glow" aria-hidden="true"></div>
-    <canvas id="sky" aria-hidden="true"></canvas>
-
-    <main>
-      <div class="stage" id="stage">
-        <button class="heart-button" id="heart" type="button" aria-label="Tap the heart"></button>
-        <h1 class="note">
-          <span class="note-message" id="message" lang="en">I love you</span>
-          <span class="note-name" id="name">Any</span>
-        </h1>
+    <h1 class="sr-only">A kitty with a delivery for <span data-name>Any</span></h1>
+    <div class="scene" id="scene">
+      <p class="line" id="line" aria-live="polite"></p>
+      <div class="thread" id="thread" aria-hidden="true"></div>
+      <div class="kitty" id="kitty">
+        <p class="bubble" id="bubble" hidden></p>
+        <pre id="cat" aria-hidden="true"></pre>
+        <button class="item" id="item" type="button" hidden><pre id="item-art" aria-hidden="true"></pre></button>
       </div>
-
-      <div class="controls">
-        <p class="hint" id="hint">Tap the heart, then give it a new color.</p>
-        <div class="swatches" id="swatches" role="group" aria-label="Heart color"></div>
-        <div class="modes" role="group" aria-label="How color is applied">
-          <button type="button" id="mode-fill" data-mode="fill" aria-pressed="true">Whole heart</button>
-          <button type="button" id="mode-paint" data-mode="paint" aria-pressed="false">Paint it</button>
-        </div>
+      <div class="bottom">
+        <p class="hint" id="hint"></p>
+        <div class="row" id="row"><button class="btn" type="button" id="again" hidden>Call kitty back</button></div>
       </div>
-    </main>
-
-    <p class="sr-only" id="live" role="status"></p>
+    </div>
   </body>
 </html>

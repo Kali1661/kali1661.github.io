@@ -1,0 +1,72 @@
+/* Shared by every day except the heart. Each page sets its own colors on :root. */
+:root {
+  --hand: "Playwrite SK", "Marck Script", "Segoe Script", "Snell Roundhand", "Bradley Hand", cursive;
+  --plain: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { background: var(--bg); overscroll-behavior: none; }
+body {
+  display: flex; flex-direction: column;
+  min-height: 100vh; min-height: 100svh;
+  margin: 0; overflow-x: hidden; overscroll-behavior: none;
+  -webkit-text-size-adjust: 100%; text-size-adjust: 100%;
+  background: var(--bg); color: var(--ink);
+  font-family: var(--plain); font-size: 16px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+button { font: inherit; color: inherit; touch-action: manipulation; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.scene { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; position: relative; flex: 1 1 0; min-height: 280px; overflow: hidden; }
+.scene > canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
+
+.foot {
+  position: relative;
+  display: grid; justify-items: center; gap: 12px;
+  padding-top: 14px;
+  padding-bottom: max(20px, env(safe-area-inset-bottom, 0px));
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.hint { margin: 0; text-align: center; text-wrap: balance; font-size: 15px; }
+.row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.btn {
+  min-height: 44px; padding: 0 18px;
+  border: 1.5px solid var(--ink); border-radius: 999px;
+  background: transparent; color: var(--ink); cursor: pointer;
+  font-size: 15px; white-space: nowrap;
+}
+.btn:hover, .btn[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.btn:active { transform: translateY(1px); }
+.color-button {
+  flex: none; width: 44px; height: 44px; padding: 0;
+  border: 1.5px solid var(--ink); border-radius: 50%; cursor: pointer;
+  background: conic-gradient(#ff7a8a, #ffc86b, #9fdc8c, #7fd0e8, #a79bf2, #f39bd2, #ff7a8a);
+  box-shadow: inset 0 0 0 7px var(--bg);
+}
+.tray {
+  position: fixed; left: 50%; z-index: 20; transform: translateX(-50%);
+  display: flex; gap: 2px; padding: 6px; border-radius: 999px;
+  max-width: calc(100vw - 16px);
+  background: #fffdf9; box-shadow: 0 8px 30px rgba(20, 10, 30, .32);
+}
+.tray button, .tray label {
+  position: relative; display: grid; place-items: center;
+  flex: 0 1 44px; min-width: 0; width: 44px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer;
+}
+.tray button::before, .tray label::before {
+  width: min(30px, 80%); aspect-ratio: 1; border-radius: 50%; content: "";
+  background: var(--dot); box-shadow: inset 0 0 0 1.5px rgba(30, 15, 40, .2);
+}
+.tray label::before { background: conic-gradient(#ff4d6d, #ffc24b, #3ee0a8, #4fb4ff, #a77bff, #ff4d6d); }
+.tray button[aria-pressed="true"]::after { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: #fffdf9; box-shadow: 0 0 0 2px #2b1a30; content: ""; }
+.tray input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; opacity: 0; cursor: pointer; }
+.tray :focus-visible { outline-color: #2b1a30; outline-offset: -2px; border-radius: 50%; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+@media (max-height: 560px) {
+  .foot { gap: 8px; padding-top: 8px; padding-bottom: 10px; }
+  .foot .hint { display: none; }
+}

@@ -1,24 +1,21 @@
-/* Change the words on the page here. */
+/* Change the words on this page here. */
 window.LOVE = {
   name: "Any",
+  from: "Jakub",
 
-  // Each tap on the heart shows the next one.
-  // 247 is the Mongolian one in numbers: Би (2 letters) чамд (4) хайртай (7).
+  // Not used by the kitty; her lines are below.
   phrases: [
-    { lang: "en", text: "I love you" },
-    { lang: "sk", text: "Ľúbim ťa" },
-    { lang: "mn", text: "Би чамд хайртай" },
-    { lang: "mn", text: "247" }
+    { lang: "en", text: "I love you" }
   ],
 
-  // Hearts under the big one. The first is the starting color.
-  colors: [
-    { name: "Rose", hex: "#ff3d6e" },
-    { name: "Cherry", hex: "#e8152f" },
-    { name: "Peach", hex: "#ff8a5c" },
-    { name: "Honey", hex: "#ffc24b" },
-    { name: "Mint", hex: "#3ee0a8" },
-    { name: "Sky", hex: "#4fb4ff" },
-    { name: "Lilac", hex: "#a77bff" }
-  ]
+  // What the kitty says, in order. {name} and {from} are filled in.
+  kitty: {
+    hello: "mew! I have a delivery",
+    heart: "{from} loves you.",
+    yarn: "For longer than this whole ball of yarn.",
+    fish: "Even more than I love fish.",
+    box: "You are the sweetest surprise.",
+    grow: "How much? Keep tapping the heart.",
+    done: "This much, {name}. And still growing."
+  }
 };
